@@ -1,0 +1,9 @@
+{
+  "name": "GuildQuestAngular",
+  "short_name": "GuildQuest",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fdb",
+  "description": "Angular version of GuildQuest sample app."
+
+}
