@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
 using GuildQuestAngular.Utils;
+using GuildQuestAngular.Models;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace GuildQuestAngular
 {
@@ -24,6 +27,7 @@ namespace GuildQuestAngular
             {
                 builder
                     .AddUserSecrets<EmailConfiguration>()
+                    .AddUserSecrets<KeysClass.ApiKeys>()
                     .AddJsonFile("appsettings.development.json", optional: false);
             }
 
@@ -38,7 +42,6 @@ namespace GuildQuestAngular
                         config["ClientSecret"],
                         new PrefixKeyVaultSecretManager(""))
                     .AddJsonFile("appsettings.json", optional: false);
-
             }
 
             Configuration = builder.Build();
@@ -50,12 +53,16 @@ namespace GuildQuestAngular
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            //services.AddHsts(options =>
-            //{
-            //    options.MaxAge = TimeSpan.FromDays(100);
-            //    options.IncludeSubDomains = true;
-            //    options.Preload = true;
-            //});
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<GuildCarsContext>(options => options.UseSqlServer(connection));
+
+            services.AddHsts(options =>
+            {
+                options.MaxAge = TimeSpan.FromDays(100);
+                options.IncludeSubDomains = true;
+                options.Preload = true;
+            });
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -65,6 +72,10 @@ namespace GuildQuestAngular
             services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
             services.AddTransient<IEmailService, EmailService>();
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<KeysClass.IApiKeys>(Configuration.GetSection("APIKeys").Get<KeysClass.ApiKeys>());
+            services.AddTransient<KeysClass.IKeyService, KeysClass.KeyService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,8 +88,9 @@ namespace GuildQuestAngular
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-               
-            }
+                app.UseHsts();
+                app.UseHttpsRedirection();
+            
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add(
@@ -100,8 +112,8 @@ namespace GuildQuestAngular
                 context.Response.Headers.Add("X-Xss-Protection", "1");
                 await next();
             });
-            app.UseHsts();
-            app.UseHttpsRedirection();
+            }
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseCors("MyCors");
@@ -110,6 +122,7 @@ namespace GuildQuestAngular
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
+                
             });
 
             app.UseSpa(spa =>
@@ -118,10 +131,12 @@ namespace GuildQuestAngular
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
+                spa.Options.StartupTimeout = new TimeSpan(0, 2, 0);
                
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    // spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }

@@ -38,7 +38,6 @@ namespace GuildQuestAngular.Utils
         int SmtpPort { get; }
         string SmtpUsername { get; set; }
         string SmtpPassword { get; set; }
-
     }
 
     public class EmailConfiguration : IEmailConfiguration
@@ -58,10 +57,7 @@ namespace GuildQuestAngular.Utils
     {
         private readonly IEmailConfiguration _emailConfiguration;
 
-        public EmailService(IEmailConfiguration emailConfiguration)
-        {
-            _emailConfiguration = emailConfiguration;
-        }
+        public EmailService(IEmailConfiguration emailConfiguration) => _emailConfiguration = emailConfiguration;
 
         public void Send(EmailMessage emailMessage)
         {

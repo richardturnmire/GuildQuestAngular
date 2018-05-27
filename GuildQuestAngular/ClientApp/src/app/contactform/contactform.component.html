@@ -1,0 +1,118 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="offset-md-1 col-md-3 h2 my-3"> Contact Us</div>
+  </div>
+  <div class="row">
+    <div class="offset-md-1 col-md-4">
+      <div class="row">
+        <agm-map [latitude]="lat"
+                 [longitude]="lng"
+                 [zoom]="zoom"
+                 [disableDefaultUI]="false"
+                 [zoomControl]="false"
+                 (mapClick)="mapClicked($event)">
+          <agm-marker *ngFor="let m of markers; let i = index"
+                      (markerClick)="clickedMarker(m.label, i)"
+                      [latitude]="m.lat"
+                      [longitude]="m.lng"
+                      [label]="m.label"
+                      [markerDraggable]="m.draggable"
+                      (dragEnd)="markerDragEnd(m, $event)">
+            <agm-info-window>
+              <strong>InfoWindow content</strong>
+            </agm-info-window>
+
+          </agm-marker>
+
+          <agm-circle [latitude]="lat" [longitude]="lng"
+                      [radius]="500"
+                      [fillColor]="'lightred'"
+                      [circleDraggable]="true"
+                      [editable]="true">
+          </agm-circle>
+        </agm-map>
+      </div>
+      <div class="row">
+        <address>
+          252 E. Market Street<br />
+          Louisville, KY 40202<br />
+          <abbr title="Phone">P:</abbr>
+          502.555.1234
+        </address>
+      </div>
+    </div>
+    <div class="col-md-6">
+
+      <form id="contactForm" (ngSubmit)="onSubmit()" #contactForm="ngForm"  class="form">
+        
+        <div class="form-container">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="name" class="required">Name</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" id="name" name="Name" class="form-control"
+                     placeholder="Enter your name"
+                     [(ngModel)]="model.contactName" required >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="email" class="required">Email</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" id="email" name="Email" class="form-control"
+                     placeholder="Enter your email address"
+                     [(ngModel)]="model.contactEmail" required email>
+             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="phone" >Phone</label>
+            </div>
+            <div class="col-md-8">
+              <input type="tel" id="phone" name="Phone" class="w-75 form-control"
+                     placeholder="Enter your phone number"
+                     [(ngModel)]="model.contactPhone" required tel >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="subject" class="required">Subject</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" id="subject" name="Subject" class="form-control"
+                     placeholder="Enter the subject of your message"
+                     [(ngModel)]="model.contactSubject" required minlength="10" maxlength="128">
+             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="message" class="required">Message</label>
+            </div>
+            <div class="col-md-8">
+              <textarea id="message" name="Message" [froalaEditor] class="form-control"
+                         [(ngModel)]="model.contactMessage" required minlength="17" maxlength="1024"
+                        >
+              </textarea>
+             </div>
+          </div>
+
+          <validation-summary [form]="contactForm"></validation-summary>
+         
+          <div class="row">
+            <div class="col-md-4">
+              <input type="submit" class="btn btn-primary" value="Submit Form" [disabled]="!contactForm.valid">
+            </div>
+          </div>
+        </div>
+         
+      </form>
+
+    </div>
+  </div>
+
+</div>
+
+
+

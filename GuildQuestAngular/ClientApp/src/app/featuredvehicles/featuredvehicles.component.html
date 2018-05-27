@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="mx-auto h2">Featured</div>
+</div>
+
+<div class="row">
+  <div class="container card-group" *ngIf="featured">
+
+    <div *ngFor="let feature of featured" class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header mx-auto">
+          <div class="card-title">{{feature.year}} {{feature.makeName}} {{feature.modelName}}</div>
+        </div>
+        <div class="card-body">
+          
+          <img class="img-responsive img-thumbnail" [appDefaultImage] src="../../assets/Images/{{feature.viNumber}}.jpg">
+          
+        </div>
+        <div class="card-footer row">
+          <div class="mx-auto">
+            <p>{{feature.salesPrice | currency}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p *ngIf="!featured">
+  No featured vehicles found!
+</p>

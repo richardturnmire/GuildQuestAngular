@@ -1,0 +1,32 @@
+<!--<ngx-spinner bdColor="rgba(51,51,51,0.8)"
+                 size="large"
+                 color="#fff"
+                 loadingText="Loading Specials..."
+                 type="cog">
+
+</ngx-spinner>-->
+
+<div class="container">
+  <ngb-carousel *ngIf="specials">
+    <ng-container *ngFor="let special of specials">
+      <ng-template ngbSlide [id]="special.special_ID">
+        <div class="card card-outline-black">
+          <div class="row">
+            <div class="card-title h3 offset-2 col-8">
+              <h3>{{special.special_Title}}</h3>
+            </div>
+          </div>
+          <div class="card-body h5 mt-2">
+            <p>{{special.special_Description}}</p>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </ngb-carousel>
+
+  <div *ngIf="!specials">
+    <div class="row">
+      <p class="mx-auto h1">No specials available</p>
+    </div>
+  </div>
+</div>

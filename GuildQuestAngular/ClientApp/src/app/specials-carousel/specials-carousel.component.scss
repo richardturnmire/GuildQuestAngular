@@ -1,0 +1,27 @@
+.carousel-item.card.active {
+  border: solid 0.3em;
+  border-color: red;
+  background-color: whitesmoke;
+}
+
+.carousel-indicators .ol .li::before {
+  color: blue;
+  background-color: green;
+}
+.card {
+  border: solid 2px black;
+  background-color: lightcoral;
+}
+
+.card .card-body {
+  background-color: whitesmoke;
+}
+
+.carousel-indicators li {
+  background-color: #999;
+  background-color: rgba(70,70,70,.25);
+}
+
+.carousel-indicators .active {
+  background-color: #444;
+}

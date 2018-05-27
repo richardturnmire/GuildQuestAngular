@@ -1,0 +1,19 @@
+nav {
+  background-color: lightsteelblue;
+
+  .nav-link {
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: lightblue;
+    margin-right: 5px;
+    width: 5rem;
+  }
+}
+.nav-pills {
+  border-radius: 6px;
+}
+
+li {
+  width: auto;
+  padding: 2px;
+}

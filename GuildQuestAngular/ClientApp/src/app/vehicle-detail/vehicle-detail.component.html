@@ -1,0 +1,98 @@
+<div id="vehicleCard" class="container" *ngIf="feature">
+  <div class="row">
+    <div hidden>{{feature.vehicleID}}</div>
+    <div class="card-title">
+      <div class="h4">{{feature.year}} {{feature.makeName}} {{feature.modelName}}</div>
+    </div>
+  </div>
+  
+  <div class="card-header">
+    <div class="row mx-0">
+      <div class="col-4">
+        <div class="cardImage">
+          <img class="img-responsive" [appDefaultImage] src="../../assets/Images/{{feature.viNumber}}.jpg">
+        </div>
+      </div>
+      <div class="col">
+        <div class="card-title bg-warning mx-0">{{feature.description}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card-body bg-info">
+      <div class="card">
+
+        <div class="row my-3">
+          <div class="col">
+            <div class="row">
+              <label class="col-5" for="bodyStyle">Body Style</label>
+              <div class="col-7" id="bodyStyle">{{feature.bodyStyle}}</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <label class="col-4" for="interior">Interior</label>
+              <div class="col" id="interior">{{feature.interiorColor}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col">
+            <div class="row">
+              <label class="col-5" for="tranny">Transmission</label>
+              <div class="col-7" id="tranny">{{feature.transmissionType}}</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <label class="col-4" for="exterior">Color</label>
+              <div class="col" id="exterior">{{feature.exteriorColor}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col">
+            <div class="row">
+              <label class="col-5" for="msrp">MSRP</label>
+              <div class="col-7" id="msrp">{{feature.msrPrice | currency}}</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <label class="col-4" for="mileage">Mileage</label>
+              <div class="col" id="mileage">{{feature.mileage}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-6">
+            <div class="row">
+              <label class="col-5" for="salePrice">Sale Price</label>
+              <div class="col-7" id="salePrice">{{feature.salesPrice | currency }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col">
+            <div class="row">
+              <label class="col-2" for="vin">VIN</label>
+              <div class="col" id="vin">{{feature.viNumber}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-footer w-100">
+           
+            <button type="button" (click)="this.goBack()" class="btn btn-primary float-right">Return</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>

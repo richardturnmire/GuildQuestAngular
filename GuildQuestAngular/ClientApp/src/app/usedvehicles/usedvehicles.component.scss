@@ -1,0 +1,43 @@
+#vehicleCard {
+  border: 2px solid black;
+  padding: 0;
+  margin: 0;
+  background-color: gainsboro;
+  height: auto;
+
+  .card-header {
+    margin: 0;
+    padding: 0;
+  }
+
+  .img-fluid {
+    width: 100%;
+    height: 30vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-body {
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    .card-body {
+      font-size: .95rem;
+    }
+    /*1rem = 16px*/
+  }
+
+  @media (min-width: 1000px) {
+    .card-body {
+      font-size: 1.25rem;
+    }
+    /*1rem = 16px*/
+  }
+}
+ 
+
+.row {
+  margin: 0;
+}

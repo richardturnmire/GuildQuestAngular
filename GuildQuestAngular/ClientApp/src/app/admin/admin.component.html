@@ -1,0 +1,185 @@
+<div class="row">
+  <h2 class="mx-auto">Admin</h2>
+</div>
+
+<div class="container row mx-auto">
+  <form class="form-inline w-100 border border-dark pb-2 mb-2 bg-light" name="searchForm" id="searchForm" (ngSubmit)="onSubmit()" novalidate
+        #myForm="ngForm">
+
+    <div class="col-11 col-sm-4 mb-2 border border-dark mx-auto px-0 pb-2 bg-transparent">
+      <div class="row">
+        <label class="mx-auto bg-light w-100 text-center">Make/Model</label>
+      </div>
+
+      <div class="row px-2">
+        <input type="text" class="w-100 form-control" [(ngModel)]="model.searchMakeModel" name="searchMakeModel" ngModel />
+      </div>
+    </div>
+    <div class="col-11 col-sm-4 mb-2 border border-dark mx-auto  px-0 pb-2 bg-transparent">
+      <div class="row">
+        <label class="mx-auto bg-light w-100 text-center">Price</label>
+      </div>
+      <div class="row">
+        <div class="col-6 col-sm-6">
+
+          <select [(ngModel)]="model.searchBeginDollar" name="searchBeginDollar" id="tbeginDollar" (change)="filterDollars($event)" class="form-control mx-auto w-100" ngModel>
+            <option [ngValue]="-1">From</option>
+            <option *ngFor="let firstdollar of beginDollars" [ngValue]="firstdollar">{{firstdollar.amount | currency:'USD':'symbol':'1.0-0'}}</option>
+          </select>
+
+        </div>
+        <div class="col-6 col-sm-6">
+
+          <select [(ngModel)]="model.searchEndDollar" name="searchEndDollar" id="tendDollar" class="form-control mx-auto w-100" ngModel>
+            <option [ngValue]="10000000">To</option>
+            <option *ngFor="let lastdollar of filteredDollars" [ngValue]="lastdollar">{{lastdollar.amount | currency:'USD':'symbol':'1.0-0'}}</option>
+          </select>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-11 col-sm-4 mb-2 border border-dark mx-auto  px-0 pb-2 bg-transparent">
+      <div class="row">
+        <label class=" mx-auto bg-light w-100 text-center">Year</label>
+      </div>
+
+      <div class="row">
+        <div class="col-6 col-sm-6">
+          <select [(ngModel)]="model.searchBeginYear" name="searchBeginYear" id="tbeginYear" (change)="filterYears($event)" class="form-control mx-auto w-100" ngModel>
+            <option [ngValue]="1900">From</option>
+            <option *ngFor="let firstyear of beginYears" [ngValue]="firstyear">{{firstyear.year}}</option>
+          </select>
+
+        </div>
+        <div class="col-6 col-sm-6">
+          <select [(ngModel)]="model.searchEndYear" name="searchEndYear" id="tendYear" class="form-control mx-auto w-100" ngModel>
+            <option [ngValue]="9999">To</option>
+            <option *ngFor="let lastyear of filteredYears" [ngValue]="lastyear">{{lastyear.year}}</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-4 col-sm-4 mt-2">
+        <button type="submit" class="btn btn-primary">Reset</button>
+      </div>
+    </div>
+
+  </form>
+
+  <!--<pre>{{myForm.value | json}}</pre>-->
+</div>
+
+<div *ngIf="vehicles; then haveVehicles; else noVehicles"> </div>
+<ng-template #haveVehicles>
+
+  <div class="container ">
+    <nav class="row">
+      <pagination-controls id="foo"
+                           (pageChange)="currentPage = $event"
+                           maxSize="9"
+                           directionLinks="true"
+                           autoHide="true"
+                           previousLabel="Previous"
+                           nextLabel="Next"
+                           screenReaderPaginationLabel="Pagination"
+                           screenReaderPageLabel="page"
+                           screenReaderCurrentLabel="You're on page"
+                           class="bg-light my-auto">
+      </pagination-controls>
+    </nav>
+
+    <div class="row">
+      <div *ngFor="let feature of vehicles | vehiclefilter: model.searchMakeModel  |
+         pricefilter: model.searchBeginDollar:model.searchEndDollar |
+         datefilter: model.searchBeginYear:model.searchEndYear |
+          paginate: { id: 'foo', itemsPerPage: pageSize, currentPage: currentPage}"
+           class="mb-3">
+
+        <div id="vehicleCard">
+          <div class="row">
+            <div class="col-sm-4 d-sm-flex-inline">
+              <div class="card-header">
+                <div hidden>{{feature.vehicleId}}</div>
+                <div class="card-title pl-3 my-auto">
+                  <div class="h3">{{feature.yearMakeModel}}</div>
+                </div>
+                <div class="cardImage mx-0 px-0 w-100">
+                  <img class="img-fluid w-100" [appDefaultImage] src="../../assets/Images/{{feature.viNumber}}.jpg">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8 d-sm-flex-inline">
+              <div class="card-body w-100 ">
+                <div class="row">
+                  <div class="col-12 col-sm-6 w-100 d-inline-flex mt-2 order-1 order-sm-1 py-sm-2">
+                    <label class="col-5 col-sm-6">Body Style</label>
+                    <div class="col-7 col-sm-7" id="bodyStyle">{{feature.bodyStyle}}</div>
+                  </div>
+                  <div class="col-12 col-sm-6 w-100 d-inline-flex mt-2 order-3 order-sm-2 py-sm-2">
+                    <label class="col-5 col-sm-4">Interior</label>
+                    <div class="col-7 col-sm-6" id="interior">{{feature.interiorColor}}</div>
+                  </div>
+                  <div class="col-12 col-sm-6 w-100 d-inline-flex order-2 order-sm-3 py-sm-2">
+                    <label class="col-5 col-sm-6 ">Transmission</label>
+                    <div class="col-7 col-sm-6" id="tranny">{{feature.transmissionType}}</div>
+                  </div>
+                  <div class="col-12 col-sm-6 w-100 d-inline-flex order-4 order-sm-4 py-sm-2">
+                    <label class="col-5 col-sm-4">Color</label>
+                    <div class="col-7 col-sm-8" id="exterior">{{feature.exteriorColor}}</div>
+                  </div>
+                  <div class="col-12 col-sm-6 w-100 d-inline-flex order-5 order-sm-5 py-sm-2">
+                    <label class="col-5 col-sm-6">MSRP</label>
+                    <div class="col-7 col-sm-6" id="msrp">{{feature.msrPrice | currency:'USD':'symbol':'1.0-0'}}</div>
+                  </div>
+                  <div class="col-12 col-sm-6 w-100 d-inline-flex order-7 order-sm-6 py-sm-2">
+                    <label class="col-5 col-sm-4">Mileage</label>
+                    <div class="col-7 col-sm-8" id="mileage">{{feature.mileage}}</div>
+                  </div>
+                  <div class="col-12 col-sm-6 w-100 d-inline-flex order-6 order-sm-7 py-sm-2">
+                    <label class="col-5 col-sm-6">Sale Price</label>
+                    <div class="col-7 col-sm-6" id="salePrice">{{feature.salesPrice | currency:'USD':'symbol':'1.0-0' }}</div>
+                  </div>
+                  <div class="col-12 col-sm-8 w-100 d-inline-flex order-last py-sm-2">
+                    <label class="col-5 col-sm-2">VIN</label>
+                    <div class="col-7 col-sm-10" id="vin">{{feature.viNumber}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="card-footer w-100">
+              <div class="mx-auto">
+                <div class="float-right">
+                  <a [routerLink]="['detail',  feature.vehicleID ]" class="btn btn-primary">Detail</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="row">
+      <pagination-controls id="foo"
+                           (pageChange)="currentPage = $event"
+                           maxSize="9"
+                           directionLinks="true"
+                           autoHide="true"
+                           previousLabel="Previous"
+                           nextLabel="Next"
+                           screenReaderPaginationLabel="Pagination"
+                           screenReaderPageLabel="page"
+                           screenReaderCurrentLabel="You're on page"
+                           class="bg-light ">
+      </pagination-controls>
+    </nav>
+  </div>
+</ng-template>
+<ng-template #noVehicles>
+  <div class="row">
+    <h2 class="mx-auto">No vehicles found!</h2>
+  </div>
+</ng-template>
