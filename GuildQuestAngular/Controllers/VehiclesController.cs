@@ -157,6 +157,13 @@ namespace GuildQuestAngular.Controllers
                     select new VehicleViewModel
                     {
                         VehicleID = veh.VehicleID,
+                        MakeModelID = veh.MakeModelID,
+                        MakeID = veh.MakeModel.MakeID,
+                        ModelID = veh.MakeModel.ModelID,
+                        BodyStyleID = veh.BodyStyleID,
+                        TransmissionTypeID = veh.TransmissionTypeID,
+                        InteriorColorID = veh.InteriorColorID,
+                        ExteriorColorID = veh.ExteriorColorID,
                         MakeName = veh.MakeModel.MakeName,
                         ModelName = veh.MakeModel.ModelName,
                         SalesPrice = veh.SalesPrice,

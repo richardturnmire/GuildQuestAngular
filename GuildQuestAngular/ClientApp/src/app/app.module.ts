@@ -19,13 +19,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SpecialsService } from './Services/specials.service';
 import { VehiclesService } from './Services/vehicles.service';
-import { KeysService } from './Services/keys.service';
+import { MiscService } from './Services/misc.service';
 import { CustomLazyMapsAPILoader } from './Services/custom-lazy-apikey-loader.service';
 import { SearchService } from 'app/Services/search.service';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { NgxSpinnerModule} from 'ngx-spinner';
 
-import { DefaultImageDirective } from './directives/default-image.directive';
 import { LoadingindicatorDirective } from './directives/loadingindicator.directive';
 
 import { AdminComponent } from './admin/admin.component';
@@ -49,7 +48,8 @@ import { VehiclefilterPipe } from './Pipes/vehiclefilter.pipe';
 import { DatefilterPipe } from './Pipes/datefilter.pipe';
 import { PricefilterPipe } from './Pipes/pricefilter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { ProgressiveImageModule } from './progressive-image/progressive-image.module';
+import { ModelPipe } from './Pipes/model.pipe';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NewvehiclesComponent,
     SearchvehiclesComponent,
     PageNotFoundComponent,
-    DefaultImageDirective,
     HomeComponent,
     SpecialsComponent,
     ContactFormComponent,
@@ -73,7 +72,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     VehiclePurchaseComponent,
     VehiclefilterPipe,
     DatefilterPipe,
-    PricefilterPipe
+    PricefilterPipe,
+    ModelPipe
     
     
    ],
@@ -90,14 +90,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     BrowserAnimationsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ProgressiveImageModule
     
    
   ],
   providers: [
     SpecialsService,
     VehiclesService,
-    KeysService,
+    MiscService,
     SearchService,
     Globals,
     { provide: MapsAPILoader, useClass: CustomLazyMapsAPILoader },

@@ -11,7 +11,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "../wwwroot/dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -29,7 +29,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
-
             ]
           },
           "configurations": {
@@ -86,7 +85,6 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/froala-editor/js/froala_editor.pkgd.min.js"
-
             ],
             "assets": [
               "src/assets",
@@ -142,6 +140,11 @@
     },
     "@schematics/angular:directive": {
       "prefix": "app"
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false
     }
   }
 }

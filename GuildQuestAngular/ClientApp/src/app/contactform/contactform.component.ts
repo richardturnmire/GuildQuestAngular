@@ -47,15 +47,16 @@ export class ContactFormComponent implements OnInit
   lat: number = 38.2539326;
   lng: number = -85.7485225;
   zoom: number = 15; // google maps zoom level
+  options: any;
 
-  constructor(private fb: FormBuilder, private _contactService: ContactService)
-  {
-
+  constructor(
+    private fb: FormBuilder,
+    private _contactService: ContactService,
+    private config: Globals) {
   }
-
-  ngOnInit()
-  {
-    
+  
+  ngOnInit() {
+    this.options = this.config.options;
   }
   onSubmit() {
     //if (!this.contactForm.valid)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpecialsService } from 'app/Services/specials.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { Special } from 'app/Models/special.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -11,6 +11,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class SpecialsComponent implements OnInit {
   public specials;
+  currentPage: number = 1;
+  pageSize: number = 5;
 
   constructor(
     private specService: SpecialsService,

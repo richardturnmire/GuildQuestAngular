@@ -4,6 +4,7 @@ import { VehiclesService } from 'app/Services/vehicles.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Globals } from 'app/Shared/globals';
 
 @Component({
   selector: 'app-vehicledetail',
@@ -17,13 +18,19 @@ export class VehicleDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private featService: VehiclesService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private config: Globals
   )
   {
     this.spinner.show();
     this.getVehicle();
   }
-  
+
+  src( viNumber )
+  {
+    return this.config.imageLocation + viNumber + ".jpg";
+  }
+
   ngOnInit()
   {
     

@@ -2,6 +2,9 @@
 export class Vehicleviewmodel {
   vehicleID: number;
   year: number;
+  makemodelID: number;
+  makeID: number;
+  modelID: number;
   bodyStyleID: number;
   transmissionTypeID: number;
   interiorColorID: number;
@@ -22,3 +25,7 @@ export class Vehicleviewmodel {
   transmissionType: string;
   yearMakeModel: string;
 }
+   
+  
+  
+  

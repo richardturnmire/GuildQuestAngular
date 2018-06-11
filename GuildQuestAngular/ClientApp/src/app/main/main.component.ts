@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 //import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Globals } from 'app/Shared/globals';
 

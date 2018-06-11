@@ -13,6 +13,8 @@ namespace GuildQuestAngular.ViewModels
         public int VehicleID { get; set; }
         public short Year { get; set; }
         public int MakeModelID { get; set; }
+        public int MakeID { get;set;}
+        public int ModelID { get; set; }
         public int BodyStyleID { get; set; }
         public int TransmissionTypeID { get; set; }
         public int InteriorColorID { get; set; }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { SpecialsService } from 'app/Services/specials.service';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { Special } from 'app/Models/special.model';
 

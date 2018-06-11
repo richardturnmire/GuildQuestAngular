@@ -1,0 +1,15 @@
+pagination-controls /deep/ {
+  .ngx-pagination {
+    margin-top: 15px;
+
+    li {
+      background: aqua !important;
+      font-size: large !important;
+
+      .current {
+        background: red !important;
+        font-size: x-large !important;
+      }
+    }
+  }
+}

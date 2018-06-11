@@ -1,98 +1,97 @@
-<div id="vehicleCard" class="container" *ngIf="feature">
-  <div class="row">
-    <div hidden>{{feature.vehicleID}}</div>
-    <div class="card-title">
-      <div class="h4">{{feature.year}} {{feature.makeName}} {{feature.modelName}}</div>
-    </div>
-  </div>
-  
-  <div class="card-header">
-    <div class="row mx-0">
-      <div class="col-4">
-        <div class="cardImage">
-          <img class="img-responsive" [appDefaultImage] src="../../assets/Images/{{feature.viNumber}}.jpg">
+
+<div class="container">
+  <div id="vehicleCard" class="card" *ngIf="feature">
+
+
+    <div class="card-header mx-0 w-100">
+      <div class="row w-100">
+        <div hidden>{{feature.vehicleID}}</div>
+        <div class="card-title">
+          <div class="h4">{{feature.year}} {{feature.makeName}} {{feature.modelName}}</div>
+        </div>
+
+        <div class="row mx-0 px-0 w-100">
+          <div class="col-md-4 mx-0 px-0">
+            <app-progressive-image [width]="100" [height]="300">
+              <img appProgressiveImage [src]="src(feature.viNumber)" class="img-fluid" />
+              <div appProgressiveImagePlaceholder class="placeholder">
+                Loading...
+              </div>
+            </app-progressive-image>
+          </div>
+          <div class="col-md-8 h-100">
+            <div [froalaView] class="card-subtitle bg-warning mx-0">{{feature.description}}</div>
+          </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card-title bg-warning mx-0">{{feature.description}}</div>
+    </div>
+
+    <div class="card-body mx-0 w-100">
+      <div class="row w-100">
+        <div class="col-12 col-md-6 order-1">
+          <div class="row">
+            <label class="col-4" for="bodyStyle">Body Style</label>
+            <div class="col-8" id="bodyStyle">{{feature.bodyStyle}}</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 order-4">
+          <div class="row">
+            <label class="col-4" for="interior">Interior</label>
+            <div class="col-8" id="interior">{{feature.interiorColor}}</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 order-2">
+          <div class="row">
+            <label class="col-4" for="tranny">Transmission</label>
+            <div class="col-8" id="tranny">{{feature.transmissionType}}</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 order-3">
+          <div class="row">
+            <label class="col-4" for="exterior">Color</label>
+            <div class="col-8" id="exterior">{{feature.exteriorColor}}</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6  order-5">
+          <div class="row">
+            <label class="col-4" for="msrp">MSRP</label>
+            <div class="col-8" id="msrp">{{feature.msrPrice | currency}}</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6  order-7">
+          <div class="row">
+            <label class="col-4" for="mileage">Mileage</label>
+            <div class="col-8" id="mileage">{{feature.mileage}}</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6  order-6">
+          <div class="row">
+            <label class="col-4" for="salePrice">Sale Price</label>
+            <div class="col-8" id="salePrice">{{feature.salesPrice | currency }}</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6  order-last">
+          <div class="row">
+            <label class="col-4" for="vin">VIN</label>
+            <div class="col-8" id="vin">{{feature.viNumber}}</div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="card-body bg-info">
-      <div class="card">
-
-        <div class="row my-3">
-          <div class="col">
-            <div class="row">
-              <label class="col-5" for="bodyStyle">Body Style</label>
-              <div class="col-7" id="bodyStyle">{{feature.bodyStyle}}</div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="row">
-              <label class="col-4" for="interior">Interior</label>
-              <div class="col" id="interior">{{feature.interiorColor}}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row my-3">
-          <div class="col">
-            <div class="row">
-              <label class="col-5" for="tranny">Transmission</label>
-              <div class="col-7" id="tranny">{{feature.transmissionType}}</div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="row">
-              <label class="col-4" for="exterior">Color</label>
-              <div class="col" id="exterior">{{feature.exteriorColor}}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row my-3">
-          <div class="col">
-            <div class="row">
-              <label class="col-5" for="msrp">MSRP</label>
-              <div class="col-7" id="msrp">{{feature.msrPrice | currency}}</div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="row">
-              <label class="col-4" for="mileage">Mileage</label>
-              <div class="col" id="mileage">{{feature.mileage}}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row my-3">
-          <div class="col-6">
-            <div class="row">
-              <label class="col-5" for="salePrice">Sale Price</label>
-              <div class="col-7" id="salePrice">{{feature.salesPrice | currency }}</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row my-3">
-          <div class="col">
-            <div class="row">
-              <label class="col-2" for="vin">VIN</label>
-              <div class="col" id="vin">{{feature.viNumber}}</div>
-            </div>
-          </div>
-        </div>
+    <div class="row w-100">
+      <div class="card-footer mx-0 w-100">
         <div class="row">
-          <div class="card-footer w-100">
-           
+          <div class="col float-right">
             <button type="button" (click)="this.goBack()" class="btn btn-primary float-right">Return</button>
-            
           </div>
         </div>
       </div>
     </div>
   </div>
- 
+
 </div>

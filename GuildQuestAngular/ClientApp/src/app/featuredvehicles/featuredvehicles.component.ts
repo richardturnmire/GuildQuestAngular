@@ -6,7 +6,8 @@ import
   ViewChild
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
+
 import
 {
   NgbCarousel
@@ -20,6 +21,7 @@ import * as _ from 'lodash';
 import { Year } from 'app/Models/year';
 import { Dollar } from 'app/Models/dollar';
 import { Searchfields } from 'app/Models/searchfields';
+import { Globals } from 'app/Shared/globals';
 
 @Component( {
   selector: 'app-featuredvehicles',
@@ -35,9 +37,15 @@ export class FeaturedvehiclesComponent implements OnInit
   constructor(
     private featService: VehiclesService,
     private spinner: NgxSpinnerService,
-    private setup: SearchService
+    private setup: SearchService,
+    private config: Globals
 
   ) { }
+
+  src( viNumber )
+  {
+    return this.config.imageLocation + viNumber + ".jpg";
+  }
 
   ngOnInit()
   {
@@ -51,7 +59,7 @@ export class FeaturedvehiclesComponent implements OnInit
       data =>
       {
         this.featured = data as Vehicleviewmodel[];
-        console.log( this.featured );
+        //console.log( this.featured );
         this.spinner.hide();
       },
       err => console.error( err ),

@@ -1,25 +1,53 @@
 <div class="row">
   <div class="mx-auto h2">Specials</div>
 </div>
-
-<div class="row">
-  <div class="container card-group" *ngIf="specials">
-
-    <div *ngFor="let special of specials" class="col-12">
-      <div class="card mb-3">
-        <div class="card-header mx-auto">
-          <div class="card-title">{{special.special_Title}}</div>
+<div *ngIf="specials; then haveSpecials; else noSpecials"> </div>
+<ng-template #haveSpecials>
+    <div class="container card-group" *ngIf="specials">
+      <nav class="row mb-2">
+        <pagination-controls id="foo"
+                             (pageChange)="currentPage = $event"
+                             maxSize="9"
+                             directionLinks="true"
+                             autoHide="true"
+                             previousLabel="Previous"
+                             nextLabel="Next"
+                             screenReaderPaginationLabel="Pagination"
+                             screenReaderPageLabel="page"
+                             screenReaderCurrentLabel="You're on page"
+                             class="bg-light  my-2">
+        </pagination-controls>
+      </nav>
+      <div class="row">
+        <div *ngFor="let special of specials | paginate: { id: 'foo', itemsPerPage: 4, currentPage: currentPage}">
+          <div class="card mb-3 w-100 border-dark">
+            <div class="card-header mx-auto">
+              <div class="card-title h3">{{special.special_Title}}</div>
+            </div>
+            <div class="card-body">
+              {{special.special_Description}}
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-
-          {{special.special_Description}}
-
-        </div>
-        
       </div>
+      <nav class="row">
+        <pagination-controls id="foo"
+                             (pageChange)="currentPage = $event"
+                             maxSize="9"
+                             directionLinks="true"
+                             autoHide="true"
+                             previousLabel="Previous"
+                             nextLabel="Next"
+                             screenReaderPaginationLabel="Pagination"
+                             screenReaderPageLabel="page"
+                             screenReaderCurrentLabel="You're on page"
+                             class="bg-light ">
+        </pagination-controls>
+      </nav>
     </div>
+</ng-template>
+<ng-template #noSpecials>
+  <div class="row">
+    <h2 class="mx-auto">No specials found!</h2>
   </div>
-</div>
-<p *ngIf="!specials">
-  No specials found!
-</p>
+</ng-template>

@@ -88,23 +88,25 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <label for="message" class="required">Message</label>
+              <div class="row h-75">
+                <label for="message" class="required">Message</label>
+              </div>
+              <div class="row h-25">
+                <div class="col-md-4">
+                  <input type="submit" class="btn btn-primary" value="Submit Form" [disabled]="!contactForm.valid">
+                </div>
+              </div>
             </div>
             <div class="col-md-8">
-              <textarea id="message" name="Message" [froalaEditor] class="form-control"
-                         [(ngModel)]="model.contactMessage" required minlength="17" maxlength="1024"
-                        >
+              <textarea id="message" name="Message" [froalaEditor]="options" class="form-control"
+                         [(ngModel)]="model.contactMessage" required minlength="17" maxlength="1024">
               </textarea>
              </div>
           </div>
 
           <validation-summary [form]="contactForm"></validation-summary>
          
-          <div class="row">
-            <div class="col-md-4">
-              <input type="submit" class="btn btn-primary" value="Submit Form" [disabled]="!contactForm.valid">
-            </div>
-          </div>
+          
         </div>
          
       </form>

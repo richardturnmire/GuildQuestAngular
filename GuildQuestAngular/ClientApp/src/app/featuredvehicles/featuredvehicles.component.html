@@ -12,7 +12,12 @@
         </div>
         <div class="card-body">
           
-          <img class="img-responsive img-thumbnail" [appDefaultImage] src="../../assets/Images/{{feature.viNumber}}.jpg">
+          <app-progressive-image [width]="100" [height]="300" >
+            <img appProgressiveImage [src]="src(feature.viNumber)" />
+            <div appProgressiveImagePlaceholder class="placeholder">
+              Loading...
+            </div>
+          </app-progressive-image>
           
         </div>
         <div class="card-footer row">

@@ -1,0 +1,30 @@
+select {
+  width: 2.5rem;
+  min-width: 2.0rem;
+}
+
+option {
+  width: 2.5rem;
+  min-width: 2.0rem;
+}
+
+.squaredTwo {
+  transform: scale(2);
+}
+
+.form-control-label {
+  justify-content: flex-end;
+  vertical-align: middle;
+   
+}
+
+.label-left {
+  justify-content: flex-start;
+}
+
+textarea {
+  textarea {
+    width: 100%;
+    height: 20vh;
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Globals } from 'app/Shared/globals';
 @Component({
   selector: 'app-vehicle-purchase',
   templateUrl: './vehicle-purchase.component.html',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehiclePurchaseComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private config: Globals) { }
 
   ngOnInit() {
+  }
+
+  src( viNumber )
+  {
+    return this.config.imageLocation + viNumber + ".jpg";
   }
 
 }

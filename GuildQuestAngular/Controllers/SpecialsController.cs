@@ -58,12 +58,7 @@ namespace GuildQuestAngular.Controllers
 
             var special = await _context.Special.FindAsync(id);
 
-            if (special == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(special);
+            return special == null ? NotFound() : (IActionResult)Ok(special);
         }
 
         // PUT: api/Specials/5

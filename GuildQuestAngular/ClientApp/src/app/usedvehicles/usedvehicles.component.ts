@@ -5,7 +5,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import {
   NgbCarousel
   
@@ -18,6 +18,7 @@ import * as _ from 'lodash';
 import { Year } from 'app/Models/year';
 import { Dollar } from 'app/Models/dollar';
 import { Searchfields } from 'app/Models/searchfields';
+import { Globals } from 'app/Shared/globals';
 
 @Component({
   selector: 'app-usedvehicles',
@@ -51,8 +52,8 @@ export class UsedvehiclesComponent implements OnInit
   constructor(
     private featService: VehiclesService,
     private spinner: NgxSpinnerService,
-    private setup: SearchService 
-     
+    private setup: SearchService,
+    private config: Globals
   ) { }
 
   ngOnInit()
@@ -71,6 +72,9 @@ export class UsedvehiclesComponent implements OnInit
  onSubmit() {
    this.form.reset();
  }
+ src(viNumber) {
+   return this.config.imageLocation + viNumber + ".jpg";
+  }
 
   getUsedVehicles() {
     this.featService.getUsedVehicles().subscribe(

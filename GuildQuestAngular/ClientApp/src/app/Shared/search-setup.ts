@@ -14,15 +14,12 @@ export class SearchSetup implements OnInit
   constructor() { } 
 
   ngOnInit() {
-    console.log( "Year is" + this.currentYear );
-
-    for ( let i = 0; i < this.currentYear; i++ )
-    {
-      this.beginYears[i] = ( i + 2000 );
-    }
-    for ( let i = 0; i < this.currentYear + 1; i++ )
-    {
-      this.endYears[i] = ( i + 2001 );
+    //console.log( "Year is" + this.currentYear );
+    let j: number = 0;
+    for ( let i = 0; i < this.currentYear; i++ ) {
+      j = i + 2000;
+      this.beginYears[i] = j;
+      this.endYears[i] = j + 1;
     }
   };
 

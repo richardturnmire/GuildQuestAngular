@@ -39,11 +39,58 @@ namespace GuildQuestAngular.Controllers
             // return Json(new string[] { key1, "value2" });
         }
 
-        // GET: api/Misc/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        // GET: api/Misc/BodyStyles
+        [HttpGet("BodyStyles", Name = "GetBodyStyles")]
+        public OkObjectResult GetBodyStyles()
         {
-            return "value";
+            var res = _context.BodyStyle.DefaultIfEmpty().ToList();
+            return Ok(res);
+           
+        }
+
+        // GET: api/Misc/ExteriorColors
+        [HttpGet("ExteriorColors", Name = "GetExteriorColors")]
+        public OkObjectResult GetExteriorColors()
+        {
+            var res = _context.ExteriorColor.DefaultIfEmpty().ToList();
+            return Ok(res);
+
+        }
+
+        // GET: api/Misc/InteriorColors
+        [HttpGet("InteriorColors", Name = "GetInteriorColors")]
+        public OkObjectResult GetInteriorColors()
+        {
+            var res = _context.InteriorColor.DefaultIfEmpty().ToList();
+            return Ok(res);
+
+        }
+
+        // GET: api/Misc/Makes
+        [HttpGet("Makes", Name = "GetMakes")]
+        public OkObjectResult GetMakes()
+        {
+            var res = _context.Make.DefaultIfEmpty().ToList();
+            return Ok(res);
+
+        }
+
+        // GET: api/Misc/MakeModels
+        [HttpGet("MakeModels", Name = "GetMakeModels")]
+        public OkObjectResult GetMakeModels()
+        {
+            var res = _context.MakeModel.DefaultIfEmpty().ToList();
+            return Ok(res);
+
+        }
+
+        // GET: api/Misc/Transmissions
+        [HttpGet("Transmissions", Name = "GetTransmissions")]
+        public OkObjectResult GetTransmissions()
+        {
+            var res = _context.TransmissionType.DefaultIfEmpty().ToList();
+            return Ok(res);
+
         }
 
         // POST: api/Misc

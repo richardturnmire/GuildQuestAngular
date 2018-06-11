@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Year } from 'app/Models/year';
 import { Dollar } from 'app/Models/dollar';
 
