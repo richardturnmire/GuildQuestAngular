@@ -106,7 +106,7 @@ export class VehicleEditComponent implements OnInit {
 
   src( viNumber )
   {
-    return this.config.imageLocation + viNumber + ".jpg";
+    return this.config.imageLocation + viNumber + this.config.imageExtension;
   }
 
   onClick()

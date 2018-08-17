@@ -105,8 +105,8 @@
                 <div class="card-title pl-3 my-auto">
                   <div class="h3">{{feature.yearMakeModel}}</div>
                 </div>
-                <app-progressive-image [width]="100" [height]="300" >
-                  <img appProgressiveImage [src]="src(feature.viNumber)" />
+                <app-progressive-image [width]="300" [height]="300" >
+                  <img appProgressiveImage [src]="src(feature.viNumber)" class="img-fluid" />
                   <div appProgressiveImagePlaceholder class="placeholder">
                     Loading...
                   </div>

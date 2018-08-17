@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Globals {
   googleMapKey: string = 'Invalid';
-  public imageLocation: string = "Images/";
+  public imageLocation: string = "Images/webp/";
+  public imageExtension: string = ".webp";
 
   public options: Object = {
     charCounterCount: true,

@@ -73,7 +73,7 @@ export class UsedvehiclesComponent implements OnInit
    this.form.reset();
  }
  src(viNumber) {
-   return this.config.imageLocation + viNumber + ".jpg";
+   return this.config.imageLocation + viNumber + this.config.imageExtension;
   }
 
   getUsedVehicles() {

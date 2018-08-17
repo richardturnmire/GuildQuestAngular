@@ -61,7 +61,7 @@ export class AdminComponent implements OnInit
 
   src( viNumber )
   {
-    return this.config.imageLocation + viNumber + ".jpg";
+    return this.config.imageLocation + viNumber + this.config.imageExtension;
   }
 
   ngOnInit()

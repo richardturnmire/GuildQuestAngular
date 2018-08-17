@@ -24,7 +24,7 @@ export class ProgressiveImageComponent implements AfterContentChecked {
   @Input()
   height: number;
 
-  @HostBinding('style.width.%')
+  @HostBinding('style.width.px')
   @Input()
   width: number;
 
